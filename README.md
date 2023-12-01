@@ -4,62 +4,54 @@ masterfully cooked spaghetti
 
 ## a little inspiration
 
-Uh, hit 'em with a little ghetto gospel
-Those who wish to follow me (my ghetto gospel)
-I welcome with my hands
-And the red sun sinks at last
-Into the hills of gold
-And peace to this young warrior
-Without the sound of guns
-If I could recollect before my hood days
-I'd sit and reminisce, thinkin' of bliss and the good days
-I stop and stare at the younger
-My heart goes to 'em, they tested with stress that they under
-And nowadays, things change
-Everyone's ashamed of the youth, 'cause the truth look strange
-And for me, it's reversed
-We left 'em a world that's cursed, and it hurts
-'Cause any day, they'll push the button
-And all good men like Malcolm X or Bobby Hutton died for nothin'
-Don't it make you get teary? The world looks dreary
-When you wipe your eyes, see it clearly
-There's no need for you to fear me
-If you take your time to hear me, maybe you can learn to cheer me
-It ain't about black or white 'cause we're human
-I hope we see the light before it's ruined
-My ghetto gospel
-Those who wish to follow me (ghetto gospel)
-I welcome with my hands
-And the red sun sinks at last
-Into the hills of gold
-And peace to this young warrior
-Without the sound of guns
-Tell me, do you see that old lady, ain't it sad?
-Livin' out of bags, but she's glad for the little things she has
-And over there, there's a lady
-Crack got her crazy, guess who's givin' birth to a baby?
-I don't trip or let it fade me
-From out of the fryin' pan, we jump into another form of slavery
-Even now, I get discouraged
-Wonder if they take it all back, will I still keep the courage?
-I refuse to be a role model
-I set goals, take control, drink out my own bottles
-I make mistakes, but learn from every one
-And when it's said and done, I bet this brother be a better one
-If I upset you, don't stress
-Never forget that God isn't finished with me yet
-I feel his hand on my brain
-When I write rhymes, I go blind and let the Lord do his thing
-But am I less holy
-'Cause I choose to puff a blunt and drink a beer with my homies?
-Before we find world peace
-We gotta find peace and end the war in the streets
-My ghetto gospel
-Those who wish to follow me (yeah, ghetto gospel)
-I welcome with my hands
-And the red sun sinks at last
-Into the hills of gold
-And peace to this young warrior
-Without the sound of guns
-Lord, can you hear me speak?
-To pay the price of bein' hellbound
+Storming through the party like my name was El Niño
+When I'm hanging out drinking in the back of an El Camino
+As a kid, was a skid, and no one knew me by name
+Trashed my own house party 'cause nobody came
+I know I'm not the one you thought you knew back in high school
+Never going, never showing up when we had to
+Attention that we crave
+Don't tell us to behave
+I'm sick of always hearing "act your age"
+I don't wanna waste my time
+Become another casualty of society
+I'll never fall in line
+Become another victim of your conformity and back down
+Because you don't
+Know us at all, we laugh when old people fall
+But what would you expect with a conscience so small?
+Heavy metal and mullets, it's how we were raised
+Maiden and Priest were the gods that we praised
+'Cause we like having fun at other people's expense, and
+Cutting people is just a minor offence then
+It's none of your concern
+I guess I'll never learn
+I'm sick of being told to wait my turn
+I don't wanna waste my time
+Become another casualty of society
+I'll never fall in line
+Become another victim of your conformity and back down
+Don't count on me
+To let you know when
+Don't count on me
+I'll do it again
+Don't count on me
+It's the point you're missin'
+Don't count on me
+'Cause I'm not listenin'
+Well I'm a no goodnick lower middle class brat
+Back packed, and I don't give a shit about nothin'
+You be standing on the corner talking all that kufuffin
+But you don't make sense from all the gas you be huffin'
+'Cause if the egg don't stain, you'll be ringing off the hook
+You're on the hit list, wanted in the telephone book
+I like songs with distortion
+To drink in proportion
+The doctor said my mom should've had an abortion
+I don't wanna waste my time
+Become another casualty of society
+I'll never fall in line
+Become another victim of your conformity and back down
+Casualty of society
+(Waste my time with them)
+Victim of your conformity and back down
