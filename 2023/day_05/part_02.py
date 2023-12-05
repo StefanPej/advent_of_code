@@ -34,22 +34,27 @@ while not mama_mia:
     print(maps['humidity-to-location'][counter].split()[0])
     source, ranges = maps['humidity-to-location'][counter].split()[1:]
     source, ranges = int(source), int(ranges)
-    source_range = (source, source+ranges)
-    def get_range(input, map):
-        for line in map:
-            dest, source, ranges = line.split()
-            dest, source, ranges = int(dest), int(source), int(ranges)
-            destmax = dest+ranges
-            if (input[0] >= dest and input[0] <= destmax) and (input[1] <= destmax and input[1] >= dest):
-                print(f'INPUT {input} IS SUBBSET OF {(dest, destmax)}')
-                return (source+(input[0] - dest), source+(input[1] - dest))
-            elif (input[0] >= dest and input[0] <= destmax):
-                print(f'INPUT {input[0]} IS GREATER THAN {dest} BUT LESS THAN {destmax}')
-                return (source+(input[0] - dest),  destmax)
-            elif input[1] <= destmax and input[1] >= dest:
-                print(f'INPUT {input[1]} IS LESS THAN {destmax} BUT GREATER THAN {dest}')
-                return (source, source+(input[1]-dest))
-        return 'WEEWOO'
+    source_range = [(source, source+ranges)]
+    def get_range(input_list, map):
+        ret = []
+        for input in input_list:
+            for line in map:
+                dest, source, ranges = line.split()
+                dest, source, ranges = int(dest), int(source), int(ranges)
+                destmax = dest+ranges
+                
+                if (input[0] >= dest and input[0] <= destmax) and (input[1] <= destmax and input[1] >= dest):
+                    print(f'INPUT {input} IS SUBBSET OF {(dest, destmax)}')
+                    ret.append((source+(input[0] - dest), source+(input[1] - dest)))
+                elif (input[0] >= dest and input[0] <= destmax):
+                    print(f'INPUT {input[0]} IS GREATER THAN {dest} BUT LESS THAN {destmax}')
+                    ret.append((source+(input[0] - dest),  source+ranges))
+                elif input[1] <= destmax and input[1] >= dest:
+                    print(f'INPUT {input[1]} IS LESS THAN {destmax} BUT GREATER THAN {dest}')
+                    ret.append((source, source+(input[1]-dest)))
+        if not ret:
+            return 'WEEWOO'
+        return ret
 
 
     for map in [maps['temperature-to-humidity'],
@@ -63,16 +68,25 @@ while not mama_mia:
     
     print(source_range)
 
-    def find_seed(seeds, input):
-        mini = input[0]
-        for seed in seeds:
-            if mini >= seed[0] and mini <= seed[1]:
-                return mini
+    def find_seed(seeds, inputs):
+        ret = []
+        for input in inputs:
+            for seed in seeds:
+                if (input[0] >= seed[0] and input[0] <= seed[1]) and (input[1] <= seed[1] and input[1] >= seed[0]):
+                    print(f'RANGE {input} IS SUBBSET OF {seed}')
+                    ret.append(input)
+                elif (input[0] >= seed[0] and input[0] <= seed[1]):
+                    print(f'RANGE {input[0]} IS GREATER THAN {seed[0]} BUT LESS THAN {destmax}')
+                    ret.append((input[0], seed[1]))
+                elif input[1] <= seed[1] and input[1] >= seed[0]:
+                    print(f'RANGE {input[1]} IS LESS THAN {seed[1]} BUT GREATER THAN {seed[0]}')
+                    ret.append((seed[0], input[1]))
+        return ret
             
     mama_mia = find_seed(seeds, source_range)
     counter += 1
     
-
+print("!@#!#!@#!@#!@#!@#")
 print(mama_mia)
         
         
@@ -101,9 +115,9 @@ def part_one_again_lol(seeds, maps):
             dest, source, ranges, number = int(dest), int(source), int(ranges), int(number)
             max_source = source + ranges
             if number in range(source, max_source):
-                print(f'SEED {number} is in range {source} - {max_source}. RETURNING  {str(dest + (number - source))}')
+                #print(f'SEED {number} is in range {source} - {max_source}. RETURNING  {str(dest + (number - source))}')
                 return str(dest + (number - source))
-        print(f'SEED NOT FOUND')
+        #print(f'SEED NOT FOUND')
         return str(number)
                 
                 
@@ -121,7 +135,38 @@ def part_one_again_lol(seeds, maps):
     seed_loc = {seed: int(seed_map[seed]['loc']) for seed in seed_map}
 
     seed_loc = {k: v for k, v in sorted(seed_loc.items(), key=lambda item: item[1])}
+    
 
-    print(seed_loc)
+    return list(seed_loc.values())[0]
 
-part_one_again_lol([str(mama_mia)], maps)
+    
+
+all_seeds = []
+
+for tups in mama_mia:
+    for seed in tups:
+        all_seeds.append(str(seed))
+print('ASDASDASDASDSAD')
+print(all_seeds)
+part_one_again_lol(all_seeds, maps)
+
+test_seed = ['3982392544']
+part_one_again_lol(test_seed, maps)
+
+count = 0
+for seed_pair in mama_mia:
+    min_loc = 99999999999999999999999999999999999
+    print(seed_pair)
+    for seed in range(seed_pair[0], seed_pair[1]):
+        min_loc = min(part_one_again_lol([str(seed)], maps), min_loc)
+        count += 1
+        if count % 1000 == 0:
+            print(f'checked {count} seeds')
+            #print(min_loc)
+
+print(f'min loc is: {min_loc}')
+
+total_seeds = 0
+for sp in mama_mia:
+    total_seeds += sp[1] - sp[0]
+print(total_seeds)
