@@ -52,7 +52,7 @@ def check_if_seed(value, seed_ranges):
             return True
     return False
 
-for i in range(367508399):
+for i in range(143606042, 300000000):
     seed = location_to_seed(i)
     if check_if_seed(seed, seeds):
         print(f'LOCATION FOUND: {i}')
