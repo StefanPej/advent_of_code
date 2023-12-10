@@ -67,7 +67,7 @@ def mp_search(pool, ranges_):
     ret = []
     for result in pool.map(check_location, ranges_):
         ret.append(result)
-        return ret
+    return ret
 
 from multiprocessing import Pool
 if __name__ == '__main__':
