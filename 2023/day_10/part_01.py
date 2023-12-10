@@ -5,12 +5,6 @@ class Pipe:
     def __init__(self, coords, letter):
         self.letter = letter
         self.coords = coords
-        self.connect_to = []
-        return
-    def add_connector(self, coord):
-        if coord[0] < 1 or coord[0] > 140 or coord[1] < 1 or coord[1] > 140:
-            return
-        self.connect_to.append(coord)
     def next_step(self, enter_direction):
         if self.letter == '|':
             if enter_direction == 't':
@@ -42,42 +36,16 @@ class Pipe:
                 return (self.coords[0]+1, self.coords[1]), 't'
             if enter_direction == 'b':
                 return (self.coords[0], self.coords[1]+1), 'l'
-        if self.letter == 'S':
-            if enter_direction == 'l':
-                return (self.coords[0]-1, self.coords[1]), 'b'
-            if enter_direction == 't':
-                return (self.coords[0], self.coords[1]-1), 'r'
-
     def __repr__(self):
-        return f'LETTER: {self.letter}, COORD: {self.coords}, CONNECTED: {self.connect_to}'
+        return f'LETTER: {self.letter}, COORD: {self.coords}'
 
 pipes = {} 
 for i, line in enumerate(input, start=1):
     for j, pipe in enumerate(line, start=1):
         if pipe != '.':
             pipe_obj = Pipe((i, j), pipe)
-            if pipe == '|':
-                pipe_obj.add_connector((i-1, j))
-                pipe_obj.add_connector((i+1, j))
-            elif pipe == '-':
-                pipe_obj.add_connector((i, j-1))
-                pipe_obj.add_connector((i, j+1))
-            elif pipe == 'L':
-                pipe_obj.add_connector((i-1, j))
-                pipe_obj.add_connector((i, j+1))
-            elif pipe == 'J':
-                pipe_obj.add_connector((i-1, j))
-                pipe_obj.add_connector((i, j-1))
-            elif pipe == '7':
-                pipe_obj.add_connector((i, j-1))
-                pipe_obj.add_connector((i+1, j))
-            elif pipe == 'F':
-                pipe_obj.add_connector((i, j+1))
-                pipe_obj.add_connector((i+1, j))
-            elif pipe == 'S':
+            if pipe == 'S':
                 pipe_obj = Pipe((i, j), 'J')
-                pipe_obj.add_connector((i, j-1))
-                pipe_obj.add_connector((i-1, j))
                 s_pipe = pipe_obj
             pipes[str((i,j))] = pipe_obj
 
@@ -91,9 +59,7 @@ while True:
     if current_pipe.coords == s_pipe.coords:
         break
 
-
 print(len(loop)/2)
-
 
 # Re save the grid without all the junk in prep for p2
 def output_grid(loop):
@@ -114,7 +80,6 @@ def output_grid(loop):
             temp += letter
         temp += '\n'
         out += temp
-
 
     with open("./2023/day_10/grid.txt", "w+") as o:
         o.write(out)
