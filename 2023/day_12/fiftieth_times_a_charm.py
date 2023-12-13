@@ -1,13 +1,21 @@
 from aoc_utils import *
+from functools import cache
 
 inp = read_input(2023, 12)
 
-# with open("./2023/day_12/test.txt", "r") as o:
-#     inp = o.readlines()
+with open("./2023/day_12/test.txt", "r") as o:
+    inp = o.readlines()
 
 springs = []
 for line in inp:
     spring, broken = line.split()
+    temp_sp = []
+    temp_br = []
+    for _ in range(5):
+        temp_sp.append(spring)
+        temp_br.append(broken)
+    spring = "?".join(sp for sp in temp_sp)
+    broken = ','.join(br for br in temp_br)
     broken = broken.split(',')
     broken = [int(broke) for broke in broken]
     springs.append(([*spring], broken))
@@ -24,26 +32,21 @@ def check_valid(spring, groups):
     #print(spring)
     return 1
 
-def solve(spring, groups, index):
+@cache
+def solve(spring, groups):
     #print(spring)
     spring_str = "".join(char for char in spring)
-    if spring_str in cache:
-        return cache[spring_str]
-    
-    if index >= len(spring):
-        cache[spring_str] = check_valid(spring_str, groups)
-        return cache[spring_str]
+    spring = list(spring)
 
-    for i in range(index, len(spring)):
+    for i in range(len(spring)):
         if spring[i] == '?':
             spring[i] = '#'
             left = spring.copy()
             spring[i] = '.'
             right = spring.copy()
-            return solve(left, groups, i) + solve(right, groups, i)
+            return solve(tuple(left), groups) + solve(tuple(right), groups)
 
-    cache[spring_str] = check_valid(spring_str, groups)
-    return cache[spring_str]
+    return check_valid(spring_str, groups)
 
 cache = {}
     
@@ -53,6 +56,6 @@ cache = {}
 # #print(solve(test[0], test[1], 1))
     
 total = 0
-for spring in springs:
-    total += solve(spring[0], spring[1], 0)
+for spring in springs[5:6]:
+    total += solve(tuple(spring[0]), tuple(spring[1]))
 print(total)
