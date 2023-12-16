@@ -14,9 +14,9 @@ class Beam:
         self.travelled = set()
     def travel(self):
         self.location = (self.location[0] + self.direction[0], self.location[1] + self.direction[1])
-        if self.location[0] >= len(inp) or self.location[0] < 0 or self.location[1] < 0 or self.location[1] >= len(inp[0]):
+        if not (0 <= self.location[0] < len(inp)) or not (0 <= self.location[1] < len(inp[0])):
             self.location = 0
-        return self.location
+
     
 beams = [Beam(RIGHT, (0,-1))]
 energised = set()
