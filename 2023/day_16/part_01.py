@@ -1,11 +1,14 @@
 from aoc_utils import *
-
+import os
+from termcolor import colored
 inp = read_input(2023, 16)
 
 UP = (-1, 0)
 DOWN = (1, 0)
 LEFT = (0, -1)
 RIGHT = (0, 1)
+
+#print(colored('gello', 'red'))
 
 class Beam:
     def __init__(self, direction, location):
@@ -16,6 +19,18 @@ class Beam:
         self.location = (self.location[0] + self.direction[0], self.location[1] + self.direction[1])
         if not (0 <= self.location[0] < len(inp)) or not (0 <= self.location[1] < len(inp[0])):
             self.location = 0
+
+def print_grid(grid, energised):
+    out_str = ''
+    for i , line in enumerate(grid):
+        for j, char in enumerate(line):
+            if (i, j) in energised:
+                out_str += colored(char, 'red')
+            else:
+                out_str += char
+        out_str += '\n'
+
+    print(out_str)
 
     
 beams = [Beam(RIGHT, (0,-1))]
@@ -56,6 +71,13 @@ while len(beams) > 0:
             beams.append(Beam(LEFT, beam.location))
             beams.append(Beam(RIGHT, beam.location))
 
+        
+        os.system('cls')
+        print_grid(inp, set(item[0] for item in energised))
+        #input()
+            
+
 
 energised_unique = set(item[0] for item in energised)
 print(len(energised_unique))
+
