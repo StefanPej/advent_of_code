@@ -1,5 +1,5 @@
 from aoc_utils import *
-from itertools import combinations
+from functools import cache
 
 inp = read_input(2023, 12)
 
@@ -18,106 +18,53 @@ for line in inp:
     broken = ','.join(br for br in temp_br)
     broken = broken.split(',')
     broken = [int(broke) for broke in broken]
-    springs.append((spring, broken))
+    springs.append((spring, tuple(broken)))
 
-def check_valid(spring, groups):
-    spring = ''.join(char for char in spring)
-    grouped_broken = spring.split('.')
-    grouped_broken = [group for group in grouped_broken if group != '']
-    for i, group in enumerate(grouped_broken):
-        if len(group) != groups[i]:
-            return False
-    return True
-
-def solve(spring):
-    springs = spring[0]
-    groups = spring[1]
-
-    spring_broken = [group for group in springs.split('.') if group != '']
-    biggest_group = max(spring_broken, key=len)
-    if len(biggest_group) == max(groups):
-       spring_broken[spring_broken.index(biggest_group)] = '#'*max(groups)
-
-    springs = "".join(char for char in spring_broken)
-
-    spring_broken = [*springs]
-    for i, char in enumerate(spring_broken):
-        if char == '.':
-            continue
-        if char == '?':
-            break
-        if char == '#':
-            hash_count = 1
-            ind = i
-            while hash_count < groups[0]:
-                ind += 1
-                spring_broken[ind] = '#'
-                hash_count += 1
-            spring_broken[ind+1] = '.'
-            groups.pop(0)
-            break
+@cache
+def solve(spring, groups):
     
-    springs = "".join(char for char in spring_broken)
-
-    spring_broken = [*springs]
-    for i, char in enumerate(reversed(spring_broken)):
-        if char == '.':
-            continue
-        if char == '?':
-            break
-        if char == '#':
-            hash_count = 1
-            ind = len(spring_broken) -1 -i
-            while hash_count < groups[-1]:
-                ind -= 1
-                spring_broken[ind] = '#'
-                hash_count += 1
-            spring_broken[ind+1] = '.'
-            groups.pop(-1)
-            break
+    #groups_done = check_groups_places(spring, groups, index)
+    #key = (tuple(spring[index:]), left_to_place, groups_done)
     
-    springs = "".join(char for char in spring_broken)
-    print(springs, groups)
 
-    already_broken = springs.count('#')
-    need_to_place = sum(groups) - already_broken
+    # if not check_if_borked(spring, groups, index):
+    #     #cache_[key] = 0
+    #     return 0
 
-    q_marks = []
-    for i, char in enumerate(springs):
-        if char == '?':
-            q_marks.append(i)
-
-
-    print(len(q_marks), need_to_place)
-    # count = 0
-    # for poss in combinations(q_marks, need_to_place):
-    #     count += 1
-    #     temp = [*springs]
-    #     for ind in poss:
-    #         temp[ind] = '#'
-
-    #     for i, char in enumerate(temp):
-    #         if char == '?':
-    #             temp[i] = '.'
-    #     #print(temp)
-    #     if check_valid(temp, groups):
-    #         count += 1
+    if not groups:
+        if '#' in spring:
+            return 0
+        return 1
+        
+    if not spring:
+        if len(groups) > 0:
+            return 0
+        return 1
     
-    return #count
+    if not '#' in spring and not '?' in spring:
+        if len(groups) == 0:
+            return 1
+        return 0
 
-print(solve(springs[77]))
-# if __name__ == '__main__':   
-#     from multiprocessing import Pool
+    current_char = spring[0]
+    rest_of_spring = spring[1:]
 
-#     pool = Pool(5)
+    while current_char not in '#?':
+        current_char = rest_of_spring[0]
+        rest_of_spring = rest_of_spring[1:]
 
-#     results = []
-#     for result in pool.map(solve, springs):
-#         results.append(result)
-#         if len(results) % 10 == 0:
-#             print(len(results))
-
-#    print(sum(results))
-    #print(apply_function_get_total(solve, springs, 'add'))
-
-#[print(spring) for spring in springs]
+    if current_char == '?':
+        return solve('#'+rest_of_spring, groups) + solve('.'+rest_of_spring, groups)
+    
+    if current_char == '#':
+        if len(current_char+rest_of_spring) >= groups[0] and '.' not in (current_char+rest_of_spring)[:groups[0]]:
+            if len(current_char+rest_of_spring) > groups[0]:
+                if (current_char+rest_of_spring)[groups[0]] == '#':
+                    return 0
+            return solve(rest_of_spring[groups[0]:], groups[1:])
+        return 0
+    
+total = 0
+for spring in springs:
+    total += solve(spring[0], spring[1])
+print(total)
