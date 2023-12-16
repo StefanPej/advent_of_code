@@ -64,7 +64,4 @@ def solve(spring, groups):
             return solve(rest_of_spring[groups[0]:], groups[1:])
         return 0
     
-total = 0
-for spring in springs:
-    total += solve(spring[0], spring[1])
-print(total)
+print(apply_function_get_total(solve, springs, 'sum'))
