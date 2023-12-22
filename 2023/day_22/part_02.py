@@ -71,8 +71,6 @@ class Brick:
 
         return self_min_z < other_min_z
 
-nums_inp = len(read_input(2023, 22))+1
-
 def hoo_yah(num, first_iter, test=False, bricks_d={}): 
     
     if first_iter:
@@ -94,74 +92,30 @@ def hoo_yah(num, first_iter, test=False, bricks_d={}):
         bricks = []
         for val in bricks_d.values():
             bricks.append(Brick(val.start, val.end, val.name))
-    #bricks = sorted(bricks)
-    
-    #print(bricks[0])
+
     if num:
         bricks.pop(num-1)
-    #print(len(bricks))
+
     GRID = {}
     for brick in bricks:
         brick.write_to_grid(GRID)
 
-    #print(GRID)
-    its = 0
-    while True:
-        its += 1
-        changed = False
-        #bricks = sorted(bricks)
-        brick_pos = {brick.name:brick.coords for brick in bricks}
-        for brick in bricks:
-            brick.fall(GRID)
-        for brick in bricks:
-            if brick_pos[brick.name] != brick.coords:
-                changed = True
-        if not changed:
-            break
+    bricks = sorted(bricks)
+    for brick in bricks:
+        brick.fall(GRID)
     
     bricks_dict = {brick.name:brick for brick in bricks}
 
     return bricks_dict
 
+nums_inp = len(read_input(2023, 22))+1
 OG = hoo_yah(0, True, False)
-#OG = {k:v.coords.copy() for k,v in OG.items()}
-#print(OG)
 total = 0
 for i in range(1, nums_inp):
-    #print(OG)
-    new = hoo_yah(i, False, False, OG.copy())
+    new = hoo_yah(i, False, False, OG)
     for k, v in new.items():
-        #print(OG[k].coords, v.coords)
         if OG[k].coords != v.coords:
-            #print(OG[k].coords, v.coords)
             total += 1
-            #break
 
 print(total)
 
-
-
-# OG = GRID.copy()
-# can_remove = 0
-# #bricks = sorted(bricks)
-# for i in range(1, len(bricks)+1):
-#     GRID = OG.copy()
-#     to_del = []
-#     for k, v in GRID.items():
-#         if v == i:
-#             to_del.append(k)
-#     print(to_del)
-#     for del_ in to_del:
-#         del GRID[del_]
-#     for j, brick in enumerate(bricks, start=1):
-#         if i == j:
-#             continue
-#         print(i, j)
-#         print(brick.coords)
-#         # if i == 5 and j > 935:
-#         #     print(GRID)
-#         brick.fall(GRID)
-#     if GRID == OG:
-#         can_remove +=1
-#     print(can_remove)
-# print(can_remove)
