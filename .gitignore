@@ -1,3 +1,16 @@
 .DS_Store
 2023/.DS_Store
 *.pyc
+*.o
+*.lock
+*.json
+*.pdb
+*.exe
+*.bin
+*.cargo
+*.cargo-lock
+*.d
+*.TAG
+*.timestamp
+*.toml
+*bin*
