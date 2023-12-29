@@ -53,7 +53,6 @@ fn part_2(inp: Vec<&str>) {
     nums_map.insert("9", "9");
 
     for line in inp {
-        let chars: Vec<char> = line.chars().collect();
         let mut digits: Vec<char> = Vec::new();
         let line_len = line.len();
         for i in 0..line_len {
