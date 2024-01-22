@@ -5,11 +5,11 @@ fn main() {
     let inp_raw = fs::read_to_string("input.txt").expect("wtf this bit do?");
     let inp: Vec<&str> = inp_raw.lines().collect();
 
-    part_1(inp.clone());
-    part_2(inp.clone());
+    part_1(&inp);
+    part_2(&inp);
 }
 
-fn part_1(inp: Vec<&str>) {
+fn part_1(inp: &Vec<&str>) {
     let mut nums: Vec<i32> = Vec::new();
     for line in inp {
         let chars: Vec<char> = line.chars().collect();
@@ -29,7 +29,7 @@ fn part_1(inp: Vec<&str>) {
     println!("Part 1: {}", sum);
 }
 
-fn part_2(inp: Vec<&str>) {
+fn part_2(inp: &Vec<&str>) {
     let mut nums: Vec<i32> = Vec::new();
 
     let mut nums_map = HashMap::new();
