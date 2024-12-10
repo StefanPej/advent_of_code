@@ -10,16 +10,16 @@ inp = inp_
 inp = [list(map(int, list(line))) for line in inp]
 
 def do_dfs(row, col, inp):
-    seen = set()
+    ans = 0
     DIRS = [(-1, 0), (1, 0), (0, 1), (0, -1)]
     Q = deque()
-    Q.append((0, row, col, ((row, col))))
+    Q.append((0, row, col))
 
     while Q:
-        n, r, c, p = Q.popleft()
+        n, r, c = Q.popleft()
 
         if n == 9:
-            seen.add((r, c, p))
+            ans += 1
 
         for rc, cc in DIRS:
             nr, nc = r + rc, c + cc
@@ -28,12 +28,9 @@ def do_dfs(row, col, inp):
                 continue
 
             if inp[nr][nc] == n + 1:
-                np = list(p)
-                np.append((nr, nc))
-                np = tuple(np)
-                Q.append((n+1, nr, nc, np))
+                Q.append((n+1, nr, nc))
 
-    return len(seen)
+    return ans
 
 ans = 0
 for r, l in enumerate(inp):
