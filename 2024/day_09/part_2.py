@@ -35,11 +35,10 @@ for f in fl[::-1]:
             break
 
         if fle <= sle:
-            sl.pop(i)
             fs = ss
             ss += fle
             sle -= fle
-            sl.insert(i, [ss, sle])
+            sl[i] = [ss, sle]
             break
     fln.append([fn, fs, fle])
 
