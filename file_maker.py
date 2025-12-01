@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
 
-YEAR = '2024'
-MAX_DAYS = 25
+YEAR = '2025'
+MAX_DAYS = 12
 INPUT_FILE_NAME = 'input.txt'
 
 
